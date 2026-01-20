@@ -1,0 +1,246 @@
+# ============================================================================
+# CTO Manager Application Configuration
+# ============================================================================
+
+quarkus:
+  # Application name
+  application:
+    name: CTO Manager
+
+  # Logging configuration
+  log:
+    level: INFO
+    console:
+      enable: true
+      format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
+    category:
+      "it.schema31.crm.cto":
+        level: DEBUG
+
+  # =========================================================================
+  # Database Configuration - PostgreSQL
+  # =========================================================================
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: sglCW66[
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/postgres?currentSchema=crm
+      max-size: 16
+      min-size: 2
+    devservices:
+      enabled: false
+      
+
+  hibernate-orm:
+    database:
+      generation: update
+    log:
+      sql: false
+      format-sql: true
+    jdbc:
+      statement-batch-size: 20
+
+  # =========================================================================
+  # Swagger UI Configuration
+  # =========================================================================
+  swagger-ui:
+    always-include: true
+    path: /swagger-ui
+    title: CTO Manager API Documentation
+    theme: flattop
+    show-extensions: true
+    filter: true
+    oauth-use-pkce-with-authorization-code-grant: true
+    oauth2-redirect-url: /q/swagger-ui/oauth2-redirect.html
+    oauth-client-id: l0P5iJK5YGr9AhUlya_Xf0vzXOYa
+    oauth-client-secret: iSEC_NstD8_lgDmxatAj9Oqv6jca
+    oauth-scopes: openid
+
+  # =========================================================================
+  # OpenAPI Configuration
+  # =========================================================================
+  smallrye-openapi:
+    enable: true
+    path: /openapi
+    open-api-version: 3.0.3
+    info-title: CTO Manager API
+    info-description: |
+      API REST per la gestione del CRM Schema31
+
+      Funzionalità:
+      - Gestione Utenti
+      - Gestione Progetti
+      - Gestione Clienti
+      - Gestione Curricula
+      - Gestione Skills e Certificazioni
+    info-version: 1.0.0
+    info-contact-name: Schema31 - Supporto Tecnico
+    info-contact-email: srossi@schema31.it
+    info-contact-url: https://schema31.it
+    info-license-name: Proprietario Schema31
+    info-license-url: https://schema31.it
+    oidc-open-id-connect-url: https://is.schema31.it/oauth2/oidcdiscovery/.well-known/openid-configuration
+    security-scheme: oauth2
+    security-scheme-name: OpenID
+    auto-add-security: false
+    always-run-filter: true
+
+  # =========================================================================
+  # OIDC Authentication Configuration
+  # =========================================================================
+  # =========================================================================
+  # OIDC JWT Token Validation (for client-side authentication)
+  # =========================================================================
+  oidc:
+    enabled: true
+    auth-server-url: https://is.schema31.it/oauth2/oidcdiscovery
+    client-id: l0P5iJK5YGr9AhUlya_Xf0vzXOYa
+    application-type: service
+    tls:
+      verification: none
+    token:
+      issuer: https://is.schema31.it/oauth2/token
+      jwks-path: https://is.schema31.it/oauth2/jwks
+      audience: l0P5iJK5YGr9AhUlya_Xf0vzXOYa
+      verify-access-token-with-user-info: false
+    authentication:
+      user-info-required: false
+
+  oidc-client:
+    auth-server-url: https://is.schema31.it/oauth2/oidcdiscovery
+    client-id: l0P5iJK5YGr9AhUlya_Xf0vzXOYa
+    credentials:
+      secret: iSEC_NstD8_lgDmxatAj9Oqv6jca
+    grant:
+      type: code
+    scopes: openid
+    tls:
+      verification: none
+
+  # =========================================================================
+  # HTTP Configuration
+  # =========================================================================
+  http:
+    port: 8080
+    cors:
+      ~: true
+      origins: http://localhost:5173
+      methods: GET,POST,PUT,DELETE,OPTIONS,HEAD
+      headers: accept,authorization,content-type,x-requested-with
+      exposed-headers: Content-Disposition
+      access-control-max-age: 86400
+      access-control-allow-credentials: true
+
+# ============================================================================
+# Development Profile
+# ============================================================================
+"%dev":
+  quarkus:
+    oidc:
+      enabled: true
+      auth-server-url: https://is.schema31.it/oauth2/oidcdiscovery
+      client-id: l0P5iJK5YGr9AhUlya_Xf0vzXOYa
+      application-type: service
+      tls:
+        verification: none
+      token:
+        issuer: https://is.schema31.it/oauth2/token
+        jwks-path: https://is.schema31.it/oauth2/jwks
+        audience: l0P5iJK5YGr9AhUlya_Xf0vzXOYa
+        verify-access-token-with-user-info: false
+      authentication:
+        user-info-required: false
+
+    log:
+      level: DEBUG
+      category:
+        "it.schema31.crm.cto":
+          level: DEBUG
+        "org.hibernate.SQL":
+          level: DEBUG
+        "io.quarkus.oidc":
+          level: DEBUG
+        "io.quarkus.security":
+          level: DEBUG
+        "io.smallrye.jwt":
+          level: DEBUG
+
+    datasource:
+      db-kind: postgresql
+      username: postgres
+      password: sglCW66[
+      jdbc:
+        url: jdbc:postgresql://localhost:5432/postgres?currentSchema=crm
+        max-size: 16
+        min-size: 2
+
+    devservices:
+      enabled: false
+
+    http:
+      port: 8080
+      cors:
+        ~: true
+        origins: http://localhost:5173
+        methods: GET,POST,PUT,DELETE,OPTIONS
+        headers: accept,authorization,content-type,x-requested-with
+        exposed-headers: Content-Disposition
+        access-control-max-age: 86400
+        access-control-allow-credentials: true
+
+    hibernate-orm:
+      database:
+        generation: update
+      log:
+        sql: true
+        format-sql: true
+
+    # Dev UI
+    dev-ui:
+      always-include: true
+
+# ============================================================================
+# Test Profile
+# ============================================================================
+"%test":
+  quarkus:
+    datasource:
+      db-kind: h2
+      jdbc:
+        url: jdbc:h2:mem:testdb
+
+    hibernate-orm:
+      database:
+        generation: drop-and-create
+
+    log:
+      level: INFO
+
+# ============================================================================
+# Production Profile
+# ============================================================================
+"%prod":
+  quarkus:
+    log:
+      level: INFO
+      category:
+        "it.schema31.crm.cto":
+          level: INFO
+
+    hibernate-orm:
+      log:
+        sql: false
+
+    http:
+      cors:
+        origins: "https://crm.schema31.it"
+
+# ============================================================================
+# GitLab Integration Configuration
+# ============================================================================
+gitlab:
+  url: https://gitlab.schema31.it
+  token: glpat-Kd_DadAR9MNiIq-ZuinIrW86MQp1OnYH.01.0w0wuo5tf
+  api-version: v4
+  per-page: 100  # Max allowed by GitLab API is 100
