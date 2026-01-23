@@ -30,7 +30,8 @@ public class DataInitializer implements CommandLineRunner {
             repository.save(new Prodotto("Ananas Del Monte", 30, 2.20, LocalDate.now().plusDays(14)));
             repository.save(new Prodotto("Limoni di Sorrento", 90, 1.80, LocalDate.now().plusDays(30)));
 
-            System.out.println("\n\n\n>>> Database Magazzino inizializzato!\n\n\n");
+            System.out.println(
+                    "\n\n\n>>> Database Magazzino inizializzato!\n\n nel browser cerca \n\n http://localhost:8080/prodotti \n\n\n");
         }
     }
 }
