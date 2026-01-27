@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class MagazzinoService {
 
     private final ProdottoRepository prodottoRepository;
+
     private final MovimentoRepository movimentoRepository;
 
     public MagazzinoService(ProdottoRepository prodottoRepository, MovimentoRepository movimentoRepository) {
