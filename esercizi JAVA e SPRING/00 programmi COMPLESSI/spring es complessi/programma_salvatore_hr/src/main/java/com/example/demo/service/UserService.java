@@ -6,7 +6,6 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -18,26 +17,24 @@ public class UserService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    // --- LOGICA UTENTI ---
+    private final String ACTIVE_STATUS = "1";
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    // --- LOGICA PROGETTI ---
-
-    // Ritorna tutti i progetti ordinati per ID e ParentID
+    // Tutti i progetti filtrati per status 1
     public List<Project> getAllProjectsSorted() {
-        return projectRepository.findAllByOrderByIdAscParentIdAsc();
+        return projectRepository.findByStatusOrderByIdAscParentIdAsc(ACTIVE_STATUS);
     }
 
-    // Ritorna solo i progetti "Padre" (dove parentId è NULL)
+    // Progetti Padre filtrati per status 1
     public List<Project> getMainProjects() {
-        return projectRepository.findByParentIdIsNullOrderByIdAsc();
+        return projectRepository.findByParentIdIsNullAndStatusOrderByIdAsc(ACTIVE_STATUS);
     }
 
-    // Ritorna solo i "Sotto-progetti" (dove parentId NON è NULL)
+    // Sotto-progetti filtrati per status 1
     public List<Project> getSubProjects() {
-        return projectRepository.findByParentIdIsNotNullOrderByIdAscParentIdAsc();
+        return projectRepository.findByParentIdIsNotNullAndStatusOrderByIdAscParentIdAsc(ACTIVE_STATUS);
     }
 }

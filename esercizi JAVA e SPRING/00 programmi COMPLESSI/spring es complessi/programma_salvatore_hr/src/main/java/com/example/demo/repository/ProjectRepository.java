@@ -8,12 +8,12 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    // Tutti ordinati per ID e poi ParentID
-    List<Project> findAllByOrderByIdAscParentIdAsc();
+    // Tutti i progetti con status = 1
+    List<Project> findByStatusOrderByIdAscParentIdAsc(String status);
 
-    // Filtro: Parent ID vuoto (null)
-    List<Project> findByParentIdIsNullOrderByIdAsc();
+    // Solo progetti PADRE con status = 1
+    List<Project> findByParentIdIsNullAndStatusOrderByIdAsc(String status);
 
-    // Filtro: Parent ID NON vuoto
-    List<Project> findByParentIdIsNotNullOrderByIdAscParentIdAsc();
+    // Solo SOTTO-PROGETTI con status = 1
+    List<Project> findByParentIdIsNotNullAndStatusOrderByIdAscParentIdAsc(String status);
 }
