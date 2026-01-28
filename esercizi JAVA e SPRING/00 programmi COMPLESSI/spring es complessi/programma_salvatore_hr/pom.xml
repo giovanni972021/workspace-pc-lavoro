@@ -6,25 +6,51 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.9</version>
+		<!-- Verifica che questa sia la versione che desideri usare -->
 		<relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>0Base_springBoot</artifactId>
+	<artifactId>programma_salvatore_hr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>0Base_springBoot</name>
-	<description>Esempio Annotazione Personalizzata Spring Boot</description>
+	<name>programma_salvatore_hr</name>
+	<description>Progetto Spring Boot con MySQL e JPA</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<!-- Dipendenza per Spring Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Dipendenza per MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.32</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+			<!-- Usa la versione 2.2 che è compatibile con Spring Boot 3.x -->
+		</dependency>
+		<!-- Jackson per lavorare con JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<!-- Dipendenza per il web (Spring MVC) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- Dipendenza per AOP (se necessaria) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<!-- Dipendenza per i test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -32,15 +58,8 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<excludes>
-					<exclude>**/desktop.ini</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
+			<!-- Spring Boot Maven Plugin per eseguire facilmente l'applicazione -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

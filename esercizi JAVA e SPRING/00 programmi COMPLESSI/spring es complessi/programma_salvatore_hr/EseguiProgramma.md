@@ -5,7 +5,7 @@ nel TERMINALE
 
 sul web
 
-http://localhost:8080/saluto
+http://localhost:8080/users
 
-saluto è cio che ho scritto nella classe Controller.java
-@GetMapping("/saluto")
+users è cio che ho scritto nella classe situata dentro la cartella controller
+@GetMapping("/users")
