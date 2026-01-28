@@ -7,6 +7,13 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    // Ordina prima per ID e poi per ParentID, entrambi crescenti
+
+    // Tutti ordinati per ID e poi ParentID
     List<Project> findAllByOrderByIdAscParentIdAsc();
+
+    // Filtro: Parent ID vuoto (null)
+    List<Project> findByParentIdIsNullOrderByIdAsc();
+
+    // Filtro: Parent ID NON vuoto
+    List<Project> findByParentIdIsNotNullOrderByIdAscParentIdAsc();
 }

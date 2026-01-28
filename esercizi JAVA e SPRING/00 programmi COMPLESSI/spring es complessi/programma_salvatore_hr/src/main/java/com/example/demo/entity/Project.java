@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "projects")
@@ -15,6 +16,15 @@ public class Project {
 
     private String name;
     private String status;
+
+    @Column(name = "creationDateTime")
+    private LocalDateTime creationDateTime;
+
+    @Column(name = "modificationDateTime")
+    private LocalDateTime modificationDateTime;
+
+    @Column(name = "code")
+    private String code;
 
     public Project() {
     }
@@ -50,5 +60,29 @@ public class Project {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public LocalDateTime getModificationDateTime() {
+        return modificationDateTime;
+    }
+
+    public void setModificationDateTime(LocalDateTime modificationDateTime) {
+        this.modificationDateTime = modificationDateTime;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
