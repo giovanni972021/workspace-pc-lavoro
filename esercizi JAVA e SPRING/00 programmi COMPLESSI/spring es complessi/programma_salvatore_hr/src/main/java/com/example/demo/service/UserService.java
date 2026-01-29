@@ -5,7 +5,6 @@ import com.example.demo.entity.Project;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ProjectRepository;
 import com.example.demo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,56 +15,44 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProjectRepository projectRepository;
-
+    private final ProjectRepository projectRepository;
+    private final UserRepository userRepository;
     private final String ACTIVE_STATUS = "1";
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public UserService(ProjectRepository projectRepository, UserRepository userRepository) {
+        this.projectRepository = projectRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Project> getAllProjectsSorted() {
         return projectRepository.findByStatusOrderByIdAscParentIdAsc(ACTIVE_STATUS);
     }
 
-    public List<Project> getMainProjects() {
-        return projectRepository.findByParentIdIsNullAndStatusOrderByIdAsc(ACTIVE_STATUS);
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    public List<Project> getSubProjects() {
-        return projectRepository.findByParentIdIsNotNullAndStatusOrderByIdAscParentIdAsc(ACTIVE_STATUS);
-    }
-
-    // LOGICA JSON UNICO AD ALBERO
     public List<ProjectTreeDto> getProjectTree() {
-        List<Project> allProjects = projectRepository.findByStatusOrderByIdAscParentIdAsc(ACTIVE_STATUS);
+        List<Project> allProjects = getAllProjectsSorted();
 
-        // Mappa per associare ID all'oggetto DTO
         Map<Long, ProjectTreeDto> dtoMap = allProjects.stream()
                 .collect(Collectors.toMap(
                         Project::getId,
-                        p -> new ProjectTreeDto(p.getId(), p.getName(), p.getCode(), p.getStatus(),
-                                p.getCreationDateTime(), p.getModificationDateTime())));
+                        p -> new ProjectTreeDto(p.getId(), p.getParentId(), p.getName(), p.getCode(),
+                                p.getStatus(), p.getCreationDateTime(), p.getModificationDateTime())));
 
-        List<ProjectTreeDto> tree = new ArrayList<>();
-
+        List<ProjectTreeDto> rootCommesse = new ArrayList<>();
         for (Project p : allProjects) {
-            ProjectTreeDto dto = dtoMap.get(p.getId());
+            ProjectTreeDto currentDto = dtoMap.get(p.getId());
             if (p.getParentId() == null) {
-                // Se non ha parent, è una commessa principale
-                tree.add(dto);
+                rootCommesse.add(currentDto);
             } else {
-                // Se ha un parent, lo aggiungo alla lista children del padre
-                ProjectTreeDto parentDto = dtoMap.get(p.getParentId());
-                if (parentDto != null) {
-                    parentDto.getChildren().add(dto);
+                ProjectTreeDto padre = dtoMap.get(p.getParentId());
+                if (padre != null) {
+                    padre.getAttivita().add(currentDto);
                 }
             }
         }
-        return tree;
+        return rootCommesse;
     }
 }

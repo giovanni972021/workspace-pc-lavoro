@@ -6,28 +6,32 @@ import java.util.List;
 
 public class ProjectTreeDto {
     private Long id;
+    private Long parentId;
     private String name;
     private String code;
     private String status;
     private LocalDateTime creationDateTime;
     private LocalDateTime modificationDateTime;
-    private List<ProjectTreeDto> children;
+    private List<ProjectTreeDto> attivita;
 
-    public ProjectTreeDto(Long id, String name, String code, String status,
-            LocalDateTime creationDateTime,
-            LocalDateTime modificationDateTime) {
+    public ProjectTreeDto(Long id, Long parentId, String name, String code, String status,
+            LocalDateTime creationDateTime, LocalDateTime modificationDateTime) {
         this.id = id;
+        this.parentId = parentId;
         this.name = name;
         this.code = code;
         this.status = status;
         this.creationDateTime = creationDateTime;
         this.modificationDateTime = modificationDateTime;
-        this.children = new ArrayList<>();
+        this.attivita = new ArrayList<>();
     }
 
-    // Getter e Setter
     public Long getId() {
         return id;
+    }
+
+    public Long getParentId() {
+        return parentId;
     }
 
     public String getName() {
@@ -50,11 +54,7 @@ public class ProjectTreeDto {
         return modificationDateTime;
     }
 
-    public List<ProjectTreeDto> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<ProjectTreeDto> children) {
-        this.children = children;
+    public List<ProjectTreeDto> getAttivita() {
+        return attivita;
     }
 }

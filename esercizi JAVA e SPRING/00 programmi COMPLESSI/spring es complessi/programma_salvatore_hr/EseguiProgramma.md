@@ -7,6 +7,7 @@ sul web
 
 http://localhost:8080/
 http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/api/projects/download per **SCARICARE** tutti i dati
 
 per guida alle api
 
