@@ -18,6 +18,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 		<!-- Dipendenza per Spring Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
