@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -29,7 +28,7 @@ public class ProjectApiController {
     public ResponseEntity<List<ProjectTreeDto>> downloadTree() {
         List<ProjectTreeDto> tree = userService.getProjectTree();
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=progetti_filtrati.json")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=progetti_export.json")
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .body(tree);
     }

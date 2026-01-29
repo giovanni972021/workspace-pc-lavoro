@@ -19,39 +19,28 @@ public class Controller {
     @GetMapping("/")
     public String home() {
         return "<html><body style='font-family:sans-serif; text-align:center; padding:50px;'>" +
-                "<h1>Gestione Database Progetti</h1>" +
-                "<p style='color:gray;'>Filtro: Status 1 oppure Status 0 modificati dopo 31/12/2023</p>" +
+                "<h1>Gestione Progetti Salvatore HR</h1>" +
                 "<div style='margin-bottom: 20px;'>" +
-                "  <a href='/projects/table'><button style='padding:10px; margin:5px;'>Visualizza Tabella</button></a>"
-                +
-                "  <a href='/api/projects/download'><button style='padding:10px; margin:5px; background:#6f42c1; color:white;'>Scarica JSON Albero</button></a>"
+                "  <a href='/projects/table'><button style='padding:10px; margin:5px;'>Tabella HTML</button></a>" +
+                "  <a href='/api/projects/download'><button style='padding:10px; margin:5px; background:#6f42c1; color:white;'>Scarica JSON (Kubernetes Ready)</button></a>"
                 +
                 "</div>" +
-                "<hr><div><a href='/users/table'>Vai a Tabella Utenti</a></div></body></html>";
+                "<hr><div><a href='/users/table'>Tabella Utenti</a></div></body></html>";
     }
 
     @GetMapping("/projects/table")
     public String getAllProjectsTable() {
-        return buildProjectTable(userService.getAllProjectsSorted(), "Progetti Filtrati");
-    }
-
-    private String buildProjectTable(List<Project> projects, String title) {
-        StringBuilder html = new StringBuilder();
-        html.append(
-                "<html><head><style>table { width: 95%; border-collapse: collapse; margin: 20px auto; font-family: Arial; } th { background-color: #28a745; color: white; padding: 10px; } td { padding: 8px; border: 1px solid #ddd; } .status-zero { color: #888; font-style: italic; }</style></head><body>")
-                .append("<h2 style='text-align:center;'>").append(title).append("</h2>")
-                .append("<div style='text-align:center;'><a href='/'>Torna alla Home</a></div>")
-                .append("<table><tr><th>ID</th><th>Parent ID</th><th>Codice</th><th>Nome</th><th>Status</th><th>Ultima Modifica</th></tr>");
+        List<Project> projects = userService.getAllProjectsSorted();
+        StringBuilder html = new StringBuilder(
+                "<html><head><style>table { width: 95%; border-collapse: collapse; margin: 20px auto; font-family: Arial; } th { background-color: #007bff; color: white; padding: 10px; } td { padding: 8px; border: 1px solid #ddd; } tr:nth-child(even) { background-color: #f2f2f2; }</style></head><body>");
+        html.append("<h2 style='text-align:center;'>Progetti nel Sistema</h2>")
+                .append("<div style='text-align:center;'><a href='/'>Indietro</a></div>")
+                .append("<table><tr><th>ID</th><th>Parent</th><th>Codice</th><th>Nome</th><th>Status</th><th>Modifica</th></tr>");
 
         for (Project p : projects) {
-            String rowClass = "0".equals(p.getStatus()) ? "class='status-zero'" : "";
-            html.append("<tr ").append(rowClass).append(">")
-                    .append("<td>").append(p.getId()).append("</td>")
-                    .append("<td>").append(p.getParentId() != null ? p.getParentId() : "<i>root</i>").append("</td>")
-                    .append("<td>").append(p.getCode() != null ? p.getCode() : "").append("</td>")
-                    .append("<td>").append(p.getName()).append("</td>")
-                    .append("<td>").append(p.getStatus()).append("</td>")
-                    .append("<td>").append(p.getModificationDateTime()).append("</td></tr>");
+            html.append("<tr><td>").append(p.getId()).append("</td><td>").append(p.getParentId()).append("</td><td>")
+                    .append(p.getCode()).append("</td><td>").append(p.getName()).append("</td><td>")
+                    .append(p.getStatus()).append("</td><td>").append(p.getModificationDateTime()).append("</td></tr>");
         }
         html.append("</table></body></html>");
         return html.toString();

@@ -5,6 +5,7 @@ import com.example.demo.entity.Project;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ProjectRepository;
 import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,14 +20,16 @@ public class UserService {
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
 
+    @Value("${project.filter.date}")
+    private String filterDateStr;
+
     public UserService(ProjectRepository projectRepository, UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.userRepository = userRepository;
     }
 
     public List<Project> getAllProjectsSorted() {
-        // FILTRO: Solo dal 1° Gennaio 2024 in poi
-        LocalDateTime limitDate = LocalDateTime.of(2024, 1, 1, 0, 0, 0);
+        LocalDateTime limitDate = LocalDateTime.parse(filterDateStr);
         return projectRepository.findActiveOrRecentlyModified(limitDate);
     }
 
