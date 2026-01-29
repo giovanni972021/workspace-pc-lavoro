@@ -12,4 +12,3 @@ per guida alle api
 
 users è cio che ho scritto nella classe situata dentro la cartella controller
 @GetMapping("/users")
-......
