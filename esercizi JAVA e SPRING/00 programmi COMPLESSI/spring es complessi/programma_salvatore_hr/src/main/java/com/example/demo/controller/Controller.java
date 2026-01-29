@@ -28,9 +28,9 @@ public class Controller {
                 "<h1>Gestione Database Progetti</h1>" +
                 "<div style='margin-bottom: 20px;'>" +
                 "  <a href='/projects/table'><button style='padding:10px; margin:5px;'>Tutti i Progetti</button></a>" +
-                "  <a href='/projects/parent_id_null'><button style='padding:10px; margin:5px; background:#007bff; color:white;'>Solo Progetti Padre (ParentID Vuoto)</button></a>"
+                "  <a href='/projects/parent_id_null'><button style='padding:10px; margin:5px; background:#007bff; color:white;'>Solo commesse - ParentID Vuoto</button></a>"
                 +
-                "  <a href='/projects/parent_id_not_null'><button style='padding:10px; margin:5px; background:#17a2b8; color:white;'>Solo Sotto-Progetti (ParentID Pieno)</button></a>"
+                "  <a href='/projects/parent_id_not_null'><button style='padding:10px; margin:5px; background:#17a2b8; color:white;'>Solo attivita delle commesse ParentID NON vuoto</button></a>"
                 +
                 "</div>" +
                 "<hr>" +

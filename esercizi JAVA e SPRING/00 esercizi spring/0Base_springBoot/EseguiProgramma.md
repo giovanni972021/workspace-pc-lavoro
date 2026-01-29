@@ -1,5 +1,5 @@
 per TESTARLO
-nel TERMINALE
+nel **TERMINALE**
 
 ./mvnw spring-boot:run
 
@@ -7,7 +7,8 @@ sul web
 
 http://localhost:8080/saluto
 
-
-saluto è cio che ho scritto nella classe situata dentro la cartella controller
+**saluto** è cio che ho scritto nella classe situata dentro la cartella controller
+nel file che solitamente si chiama
+**Controller.java**
 
 @GetMapping("/saluto")
