@@ -29,7 +29,7 @@ public class ProjectApiController {
     public ResponseEntity<List<ProjectTreeDto>> downloadTree() {
         List<ProjectTreeDto> tree = userService.getProjectTree();
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=progetti_albero.json")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=progetti_filtrati.json")
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .body(tree);
     }

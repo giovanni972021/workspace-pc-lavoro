@@ -7,6 +7,7 @@ import com.example.demo.repository.ProjectRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,6 @@ public class UserService {
 
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
-    private final String ACTIVE_STATUS = "1";
 
     public UserService(ProjectRepository projectRepository, UserRepository userRepository) {
         this.projectRepository = projectRepository;
@@ -25,7 +25,9 @@ public class UserService {
     }
 
     public List<Project> getAllProjectsSorted() {
-        return projectRepository.findByStatusOrderByIdAscParentIdAsc(ACTIVE_STATUS);
+        // FILTRO: Solo dal 1° Gennaio 2024 in poi
+        LocalDateTime limitDate = LocalDateTime.of(2024, 1, 1, 0, 0, 0);
+        return projectRepository.findActiveOrRecentlyModified(limitDate);
     }
 
     public List<User> getAllUsers() {
