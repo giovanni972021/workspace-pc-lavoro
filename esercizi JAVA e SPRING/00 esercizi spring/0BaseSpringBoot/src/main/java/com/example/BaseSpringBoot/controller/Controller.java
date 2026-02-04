@@ -1,8 +1,7 @@
-package com.example.demo.controller;
+package com.example.BaseSpringBoot.controller;
 
-import com.example.demo.service.ServiceClass;
+import com.example.BaseSpringBoot.service.ServiceClass;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
