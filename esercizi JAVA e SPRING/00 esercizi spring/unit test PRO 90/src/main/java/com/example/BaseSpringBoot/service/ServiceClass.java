@@ -8,5 +8,4 @@ public class ServiceClass {
     public String saluta() {
         return "Ciao da Spring Boot con Serviceeeeeeeee";
     }
-
 }

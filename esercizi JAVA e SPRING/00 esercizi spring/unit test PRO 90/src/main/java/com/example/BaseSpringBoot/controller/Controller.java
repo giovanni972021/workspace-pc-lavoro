@@ -9,15 +9,13 @@ public class Controller {
 
     private final ServiceClass salutoService;
 
-    // Dependency injection tramite costruttore
+    // Dependency Injection via costruttore (fondamentale per i Mock)
     public Controller(ServiceClass salutoService) {
         this.salutoService = salutoService;
     }
 
-    // Endpoint base
     @GetMapping("/saluto")
     public String saluto() {
         return salutoService.saluta();
     }
-
 }
