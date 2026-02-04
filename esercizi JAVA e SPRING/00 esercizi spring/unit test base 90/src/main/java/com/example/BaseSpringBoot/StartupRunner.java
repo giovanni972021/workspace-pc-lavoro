@@ -11,10 +11,4 @@ public class StartupRunner implements ApplicationRunner {
   public void run(ApplicationArguments args) {
   }
 
-  /*
-   * @Override
-   * public void run(ApplicationArguments args) {
-   * throw new RuntimeException("Errore di prova: sto testando il crash");
-   * }
-   */
 }
