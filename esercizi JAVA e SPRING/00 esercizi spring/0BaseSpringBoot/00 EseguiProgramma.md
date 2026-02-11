@@ -6,7 +6,7 @@ questo codice qui sopra va eseguito nella cartella che contiene i file
 .mvn, .vscode ecc ecc NON da altre parti altrimenti NON funziona
 
 **sul web**
-http://localhost:8080/api/projects
+http://localhost:8080/api/saluto
 http://localhost:8080/swagger-ui/index.html **per guida alle api**
 
 **api/projects** è cio che ho scritto nella classe situata dentro la cartella controller
