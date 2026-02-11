@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "DemoApplication",
+      "request": "launch",
+      "mainClass": "com.example.demo.DemoApplication",
+      "projectName": "programma-base-spring-boot"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-Application<0_pprogramma_base_spring_boot>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
