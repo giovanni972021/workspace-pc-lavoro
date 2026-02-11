@@ -1,14 +1,16 @@
-per TESTARLO
-nel **TERMINALE**
+per **TESTARE programma**
 
+nel **TERMINALE**
 ./mvnw spring-boot:run
 
-sul web
+**sul web**
+http://localhost:8080/api/projects
+http://localhost:8080/swagger-ui/index.html **per guida alle api**
 
-http://localhost:8080/saluto
+**api/projects** è cio che ho scritto nella classe situata dentro la cartella controller
+@GetMapping("/api") e "projects"
 
-**saluto** è cio che ho scritto nella classe situata dentro la cartella controller
-nel file che solitamente si chiama
-**Controller.java**
+**8080** è il numero di porta di default, se non dovesse funzionare, vedi cosa ce scritto nel file **application.properties** nella cartella "resources"
 
-@GetMapping("/saluto")
+server.port=8081
+in QUESTO caso **8081** è la porta dove verra eseguito il programma in locale
