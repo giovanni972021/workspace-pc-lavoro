@@ -7,14 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
     public static void main(String[] args) {
-        try {
-            SpringApplication.run(DemoApplication.class, args);
-            System.out.println("\n\nPROGRAMMA ESEGUITO CORRETTAMENTE\n\n");
-        } catch (Exception e) {
-            System.out.println("ERRORE:\n\n");
-            System.out.println(e.getClass().getSimpleName());
-            System.out.println(e.getMessage());
-            System.out.println("\n\n");
-        }
+
+        SpringApplication.run(DemoApplication.class, args);
+        System.out.println("\n\nPROGRAMMA ESEGUITO CORRETTAMENTE\n\n");
+
     }
 }
