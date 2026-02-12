@@ -19,6 +19,7 @@ public class ProjectService {
 
   /*
    * Recupera i progetti con jobOrderId non nullo
+   * CONDIZIONE DEL FILTRO ossia se colonna job order id NON nulla
    */
   public List<Project> getProjectsConJobOrder() {
     return projectRepository.findByJobOrderIdIsNotNull();
