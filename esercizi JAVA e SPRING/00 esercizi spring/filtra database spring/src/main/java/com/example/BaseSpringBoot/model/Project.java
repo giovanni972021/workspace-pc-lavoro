@@ -3,31 +3,32 @@ package com.example.BaseSpringBoot.model;
 import jakarta.persistence.*;
 
 /*
- * Mappa la tabella "projects" del database hr
+ * Questa classe rappresenta la tabella "projects" del database HR.
  */
 @Entity
 @Table(name = "projects")
 public class Project {
 
+  /*
+   * Chiave primaria della tabella.
+   * NON mettiamo @GeneratedValue perché la tabella esiste già nel database.
+   */
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private Long id;
 
   /*
-   * Colonna del database:
-   * jobOrderId
+   * IMPORTANTISSIMO:
+   * Il nome deve essere IDENTICO a quello nel database: jobOrderid
    */
-  @Column(name = "jobOrderId")
+  @Column(name = "jobOrderid")
   private Long jobOrderId;
 
-  /*
-   * Costruttore vuoto obbligatorio per JPA
-   */
+  // Costruttore vuoto obbligatorio per JPA
   public Project() {
   }
 
-  // ===== GETTER =====
-
+  // Getter
   public Long getId() {
     return id;
   }
@@ -36,8 +37,7 @@ public class Project {
     return jobOrderId;
   }
 
-  // ===== SETTER =====
-
+  // Setter
   public void setJobOrderId(Long jobOrderId) {
     this.jobOrderId = jobOrderId;
   }
