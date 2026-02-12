@@ -1,8 +1,0 @@
-com\example\BaseSpringBoot\dto\ProdottoDTO.class
-com\example\BaseSpringBoot\entity\Prodotto.class
-com\example\BaseSpringBoot\controller\Controller.class
-com\example\BaseSpringBoot\mapper\ProdottoMapperImpl.class
-com\example\BaseSpringBoot\mapper\ProdottoMapper.class
-com\example\BaseSpringBoot\service\ServiceClass.class
-com\example\BaseSpringBoot\DemoApplication.class
-com\example\BaseSpringBoot\StartupRunner.class

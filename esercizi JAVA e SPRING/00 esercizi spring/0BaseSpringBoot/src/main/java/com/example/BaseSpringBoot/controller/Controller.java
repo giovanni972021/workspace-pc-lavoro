@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 // Imposta il prefisso "api" per tutti gli endpoint della classe
-@Tag(name = "Controller Principale", description = "Gestisce i messaggi di base")
+@Tag(name = "Controller es base spring boot", description = "Gestisce i messaggi di base")
 // Titolo nella legenda
 public class Controller {
 
