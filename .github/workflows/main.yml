@@ -5,19 +5,20 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-  workflow_dispatch: # Questo abilita il tasto Play
+  workflow_dispatch: 
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Impostiamo la cartella di lavoro per tutto il Job
+    # Impostiamo il percorso relativo corretto partendo dalla root del repo
     defaults:
       run:
-        working-directory: ./programma_20_2_26
+        working-directory: "esercizi JAVA e SPRING/00 esercizi spring/programma_20_2_26"
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -27,7 +28,7 @@ jobs:
         cache: maven
 
     - name: Build with Maven
-      # Ora Maven troverà il pom.xml perché "si trova" già dentro la cartella giusta
+      # Maven cercherà il pom.xml nella working-directory impostata sopra
       run: mvn -B package
 
     - name: Run Tests
