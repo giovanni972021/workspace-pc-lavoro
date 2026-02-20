@@ -2,13 +2,19 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main", "master" ]
+  workflow_dispatch: # Questo abilita il tasto Play
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # Impostiamo la cartella di lavoro per tutto il Job
+    defaults:
+      run:
+        working-directory: ./programma_20_2_26
 
     steps:
     - uses: actions/checkout@v4
@@ -21,7 +27,8 @@ jobs:
         cache: maven
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      # Ora Maven troverà il pom.xml perché "si trova" già dentro la cartella giusta
+      run: mvn -B package
 
     - name: Run Tests
       run: mvn test
