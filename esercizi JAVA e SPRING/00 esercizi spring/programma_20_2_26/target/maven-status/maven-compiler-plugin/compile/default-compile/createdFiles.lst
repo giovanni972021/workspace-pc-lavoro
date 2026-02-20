@@ -1,3 +1,4 @@
-com\example\demo\service\ServiceClass.class
-com\example\demo\DemoApplication.class
-com\example\demo\controller\Controller.class
+com\example\programma_20_2_26\DemoApplication.class
+com\example\programma_20_2_26\StartupRunner.class
+com\example\programma_20_2_26\controller\Controller.class
+com\example\programma_20_2_26\service\ServiceClass.class
