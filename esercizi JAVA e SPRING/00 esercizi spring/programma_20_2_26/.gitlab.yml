@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: ["main"] # Si attiva ogni volta che fai push su main
+    branches: ["master"] # Si attiva ogni volta che fai push su main
   pull_request:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
   build:
